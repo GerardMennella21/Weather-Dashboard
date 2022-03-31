@@ -1,0 +1,15 @@
+header {
+    background-color: blue;
+    background-image: linear-gradient(to right, blue, purple);
+}
+h2 {
+    font-size: 22px;
+}
+#pastSearch:hover {
+    background-image: linear-gradient(to right, blue, purple);
+    cursor: pointer;
+}
+#searchedCity:focus,
+#searchedCity:hover {
+    background-image: linear-gradient(to right, blue, purple);
+}

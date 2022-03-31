@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>Weather Dashboard</title>
+</head>
+<body>
+
+    <!--Header-->
+    <header class="container-fluid text-white text-center p-3">
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <!--Main Area-->
+    <main class="container-fluid">
+        
+        <!--Search/Results -->
+        <div class="col-2">
+            <!--Search Header-->
+            <h2 class="mt-2 mb-2 text-primary">Search Weather by City:</h2>
+            <!--Search Section-->
+            <section class="input-group mb-3">
+                <!--Search Input-->
+                <input id="searchedCity" type="text" class="form-control text-light bg-dark" placeholder="Enter City Here" aria-label="Enter City Here" aria-describedby="searchBtn">
+                <!--Search Submit Button-->
+                <div class="input-group-append">
+                    <button class="btn btn-primary btn-outline-primary" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+            </section>
+            <!--Search History Section-->
+            <section class="border-top border-primary" >
+                <ul id="searchHistory" class="list-group"></ul>
+            </section>
+        </div>
+
+        <!--City/Forecast-->
+        <div class="col-10">
+            <!--Current Weather Section-->
+            <section>
+                <h3 id="currentCity"></h3>
+
+            </section>
+            <!--5 Day Forecast Section-->
+            <section>
+
+            </section>
+        </div>
+        
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
