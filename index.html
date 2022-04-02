@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>Weather Dashboard</title>
 </head>
-<body>
+<body class="bg-dark">
 
     <!--Header-->
     <header class="container-fluid text-white text-center p-3">
@@ -17,23 +17,23 @@
     </header>
 
     <!--Main Area-->
-    <main class="container-fluid">
+    <main class="container-fluid row">
         
         <!--Search/Results -->
         <div class="col-2">
             <!--Search Header-->
-            <h2 class="mt-2 mb-2 text-primary">Search Weather by City:</h2>
+            <h2 class="mt-2 mb-2 text-light">Search Weather by City:</h2>
             <!--Search Section-->
             <section class="input-group mb-3">
                 <!--Search Input-->
                 <input id="searchedCity" type="text" class="form-control text-light bg-dark" placeholder="Enter City Here" aria-label="Enter City Here" aria-describedby="searchBtn">
                 <!--Search Submit Button-->
                 <div class="input-group-append">
-                    <button class="btn btn-primary btn-outline-primary" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary btn-outline-primary border border-light" type="button" id="searchBtn"><i class="fas fa-search"></i></button>
                 </div>
             </section>
             <!--Search History Section-->
-            <section class="border-top border-primary" >
+            <section class="border-top border-bottom border-light p-2" >
                 <ul id="searchHistory" class="list-group"></ul>
             </section>
         </div>
@@ -41,9 +41,13 @@
         <!--City/Forecast-->
         <div class="col-10">
             <!--Current Weather Section-->
-            <section>
-                <h3 id="currentCity"></h3>
-
+            <section class="border border-light rounded mt-5 text-center text-light">
+                <h3 id="currentCity" class="mt-5"></h3>
+                <img id="weatherPic" alt="">
+                <p id="temp"></p>
+                <p id="wind"></p>
+                <p id="humidity"></p>
+                <p id="UV"></p>
             </section>
             <!--5 Day Forecast Section-->
             <section>
