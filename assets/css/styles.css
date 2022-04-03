@@ -5,6 +5,9 @@ header {
 h2 {
     font-size: 22px;
 }
+h5 {
+    font-size: 16px;
+}
 #pastSearch:hover {
     background-image: linear-gradient(to right, #0275d8, purple);
     cursor: pointer;
@@ -12,4 +15,7 @@ h2 {
 #searchedCity:focus,
 #searchedCity:hover {
     background-image: linear-gradient(to right, #0275d8, purple);
+}
+#pastSearch {
+    font-size: 28px;
 }

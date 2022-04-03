@@ -33,16 +33,18 @@
                 </div>
             </section>
             <!--Search History Section-->
-            <section class="border-top border-bottom border-light p-2" >
+            <section class="border-top border-bottom border-light p-2 text-center text-light" >
+                <h2>History</h2>
                 <ul id="searchHistory" class="list-group"></ul>
             </section>
         </div>
 
         <!--City/Forecast-->
-        <div class="col-10">
+        <div class="col-10 justify-content-center">
             <!--Current Weather Section-->
-            <section class="border border-light rounded mt-5 text-center text-light">
+            <section class="border border-light rounded mt-5 mb-5 text-center text-light">
                 <h3 id="currentCity" class="mt-5"></h3>
+                <h3 id="currentDate" class=""></h3>
                 <img id="weatherPic" alt="">
                 <p id="temp"></p>
                 <p id="wind"></p>
@@ -50,7 +52,8 @@
                 <p id="UV"></p>
             </section>
             <!--5 Day Forecast Section-->
-            <section>
+            <h4 class="text-light text-center">5 Day Forecast</h4>
+            <section class="border border-light rounded row justify-content-around" id="forecastSection">
 
             </section>
         </div>
