@@ -27,7 +27,7 @@ var getCityWeather = function(currentCity){
                             response.json().then(function(data) {
                                 // Date Variables
                                 var date = new Date(data.current.dt * 1000)
-                                const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",]
+                                const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
                                 var day = weekdays[date.getDay()]
                                 var dd = date.getDate()
                                 var mm = date.getMonth()
@@ -51,16 +51,22 @@ var getCityWeather = function(currentCity){
                                 $("#humidity").text("Humidity: " + humidity + "%")
                                 $("#UV").text("UV: " + uvIndex)
                                 // UV Color
+                                $("#UV").addClass("badge")
                                 if (uvIndex < 4) {
-                                    $("#UV").addClass("badge badge-success")
+                                    $("#UV").removeClass("badge-danger")
+                                    $("#UV").removeClass("badge-warning")
+                                    $("#UV").addClass("badge-success")
                                 } else if (uvIndex < 8) {
-                                    $("#UV").addClass("badge badge-warning")
+                                    $("#UV").removeClass("badge-danger")
+                                    $("#UV").removeClass("badge-success")
+                                    $("#UV").addClass("badge-warning")
                                 } else {
-                                    $("#UV").addClass("badge badge-danger")
+                                    $("#UV").removeClass("badge-success")
+                                    $("#UV").removeClass("badge-warning")
+                                    $("#UV").addClass("badge-danger")
                                 }
                                 // Reset Forecast
-                                var fcSect = document.querySelector("#forecastSection")
-                                fcSect.innerHTML = ""
+                                $("#forecastSection").empty()
                                 // 5 Day Forecast Loop
                                 for (i = 1; i < 6; i++) {
                                     // Forecast Date 
@@ -74,7 +80,7 @@ var getCityWeather = function(currentCity){
                                     var fcWeatherPic = data.daily[i].weather[0].icon
                                     var fcWeatherPicAlt = data.daily[i].weather[0].description
                                     // Forecast Temp, Wind, Humidity Variables
-                                    var fcTemp = data.daily[i].temp.day
+                                    var fcTemp = Math.floor(data.daily[i].temp.day)
                                     var fcWind = data.daily[i].wind_speed
                                     var fcHumidity = data.daily[i].humidity
                                     // Forecast Element Variables
@@ -115,19 +121,22 @@ var getCityWeather = function(currentCity){
         })
 }
 
+// Search History Storage/Array
+var searchHistory = JSON.parse(localStorage.getItem("history")) || []
+
 // Search City Function
 $("#searchBtn").on("click", function() {    
     // Variables
     var searchedCity = $("#searchedCity").val()
     var pastSearch = document.createElement("li")
     var deleteBtn = document.createElement("button")
+    var index = searchHistory.length
     // Attributes
-    deleteBtn.setAttribute("id", "deleteBtn")
     deleteBtn.setAttribute("type", "button")
-    pastSearch.setAttribute("id", "pastSearch")
+    pastSearch.setAttribute("id", index)
     // Classes
-    $(deleteBtn).addClass("btn btn-danger btn-outline-light border border-light")
-    $(pastSearch).addClass("list-group-item text-light bg-dark text-center border border-light")
+    $(deleteBtn).addClass("btn btn-danger btn-outline-light border border-light deleteBtn")
+    $(pastSearch).addClass("list-group-item text-light bg-dark text-center border border-light pastSearch")
     // Weather Function Call
     getCityWeather(searchedCity)
     // Inner HTML
@@ -142,11 +151,60 @@ $("#searchBtn").on("click", function() {
     })
     // Delete Click Function
     $(deleteBtn).on("click", function() {
+        var deleteID = $(this).parent().attr("id")
         $(this).parent("li").remove()
+        searchHistory.splice(deleteID , 1) 
+        localStorage.setItem("history", JSON.stringify(searchHistory))
+        displayHistory()
     })
+    // Local Storage
+    searchHistory.push(searchedCity)
+    localStorage.setItem("history", JSON.stringify(searchHistory))
+    index++
     // Reset Search
     $("#searchedCity").val("")
 })
+
+// Display Search History Function
+var displayHistory = function() {
+    // Clear History
+    $("#searchHistory").empty()
+    // Generate History
+    for (i = 0; i < searchHistory.length; i++) {
+        // Variables
+        var historyCity = searchHistory[i]
+        var historySearch = document.createElement("li")
+        var historyDelete = document.createElement("button")
+        // Attributes
+        historyDelete.setAttribute("type", "button")
+        historySearch.setAttribute("id", [i])
+        // Classes
+        $(historyDelete).addClass("btn btn-danger btn-outline-light border border-light")
+        $(historySearch).addClass("list-group-item text-light bg-dark text-center border border-light pastSearch")
+        // Inner HTML
+        historyDelete.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
+        historySearch.innerHTML = historyCity + "<br />"
+        // Append
+        $("#searchHistory").append(historySearch)
+        $(historySearch).append(historyDelete)
+        // History Click Function
+        $(historySearch).on("click", function() {
+            getCityWeather($(this).text())
+        })
+        // Delete Click Function
+        $(historyDelete).on("click", function() {
+            $(this).parent("li").remove()
+            var deleteID = $(this).parent().attr("id")
+            searchHistory.splice(deleteID, 1)
+            localStorage.setItem("history", JSON.stringify(searchHistory))
+            displayHistory()
+        })
+    }
+}
+
+
+displayHistory()
+
 
 
 
