@@ -131,14 +131,14 @@ $("#searchBtn").on("click", function() {
     var pastSearch = document.createElement("li")
     var deleteBtn = document.createElement("button")
     var index = searchHistory.length
+    // Weather Function Call
+    getCityWeather(searchedCity)
     // Attributes
     deleteBtn.setAttribute("type", "button")
     pastSearch.setAttribute("id", index)
     // Classes
     $(deleteBtn).addClass("btn btn-danger btn-outline-light border border-light deleteBtn")
     $(pastSearch).addClass("list-group-item text-light bg-dark text-center border border-light pastSearch")
-    // Weather Function Call
-    getCityWeather(searchedCity)
     // Inner HTML
     deleteBtn.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
     pastSearch.innerHTML = searchedCity + "<br />"

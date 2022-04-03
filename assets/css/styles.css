@@ -1,3 +1,4 @@
+/*Header and h elements*/
 header {
     background-color: #0275d8;
     background-image: linear-gradient(to right, #0275d8, purple);
@@ -8,6 +9,8 @@ h2 {
 h5 {
     font-size: 16px;
 }
+
+/*Search and History*/
 .pastSearch:hover {
     background-image: linear-gradient(to right, #0275d8, purple);
     cursor: pointer;
