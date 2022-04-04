@@ -30,7 +30,7 @@ var getCityWeather = function(currentCity){
                                 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
                                 var day = weekdays[date.getDay()]
                                 var dd = date.getDate()
-                                var mm = date.getMonth()
+                                var mm = date.getMonth() + 1
                                 var yyyy = date.getFullYear()
                                 // IMG Variables
                                 var weatherPic = data.current.weather[0].icon
@@ -74,7 +74,7 @@ var getCityWeather = function(currentCity){
                                     const wkdays = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat",]
                                     var fcDay = wkdays[forecastDate.getDay()]
                                     var fcDD = forecastDate.getDate()
-                                    var fcMM = forecastDate.getMonth()
+                                    var fcMM = forecastDate.getMonth() + 1
                                     var fcYYYY = forecastDate.getFullYear()
                                     // Forecast IMG Variables
                                     var fcWeatherPic = data.daily[i].weather[0].icon
